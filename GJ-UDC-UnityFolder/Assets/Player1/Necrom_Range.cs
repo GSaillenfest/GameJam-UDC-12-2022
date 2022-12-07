@@ -8,18 +8,8 @@ using UnityEngine.Events;
 public class Necrom_Range : MonoBehaviour
 {
     public event Action<Undead_State> onOutOfRange;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    [SerializeField]
+    ParticleSystem VFX;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,5 +26,16 @@ public class Necrom_Range : MonoBehaviour
             if ((other.transform.position - transform.position).magnitude > 5)
                 onOutOfRange?.Invoke(Undead_State.UndeadDown);
         }
+    }
+
+    private void Start()
+    {
+        DrawCircle();
+    }
+
+    void DrawCircle(float modifier = 1)
+    {
+        var shape = VFX.shape;
+        shape.radius = GetComponentInChildren<SphereCollider>().radius * 0.5f * modifier;
     }
 }

@@ -51,6 +51,6 @@ public class UndeadPlayerAttacks : MonoBehaviour
     {
         Debug.Log("hit enemy");
         if (other.gameObject.CompareTag("Enemy"))
-            other.gameObject.GetComponent<Health>().TakeDamage(hitPoint);
+            other.transform.parent.GetComponent<EnemyHealth>().TakeDamage(hitPoint);
     }
 }
