@@ -9,9 +9,11 @@ public class PlayerTwoMovements : MonoBehaviour
     public PlayerControls playerControls;
     Vector2 move;
     Vector3 movement;
+    Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         playerControls = new();
         rgbd = GetComponent<Rigidbody>();
         FindObjectOfType<Necrom_Range>().onOutOfRange += ChangeState;
@@ -46,6 +48,7 @@ public class PlayerTwoMovements : MonoBehaviour
         movement = GetComponent<UndeadStateManager>().State.Speed * movement.normalized;
         rgbd.velocity = movement;
     }
+
     private void LookRotation()
     {
         Quaternion rot;
@@ -56,19 +59,18 @@ public class PlayerTwoMovements : MonoBehaviour
         }
     }
 
-    private void EnableControls()
+    public void EnableControls()
     {
         playerControls.Player1.Enable();
     }
 
-    private void DisableControls()
+    public void DisableControls()
     {
         playerControls.Player1.Disable();
     }
 
     void ChangeState(Undead_State state)
     {
-        Debug.Log("changing state ?");
         GetComponent<UndeadStateManager>().SwitchState(state);
     }
 

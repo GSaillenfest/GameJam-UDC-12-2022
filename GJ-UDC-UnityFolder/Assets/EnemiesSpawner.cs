@@ -64,9 +64,9 @@ public class EnemiesSpawner : MonoBehaviour
         GameObject enemy;
         if (transform.childCount < 300)
         {
-            for (int i = 0; i < spawningCurve.Evaluate(time / 120f) * 50; i++)
+            for (int i = 0; i < spawningCurve.Evaluate(time / 120f) * 10; i++)
             {
-                Ray ray = Camera.main.ViewportPointToRay(new Vector3(Random.Range(1f, 1.1f), Random.Range(0f, 1), 0));
+                Ray ray = Camera.main.ViewportPointToRay(new Vector3(Random.Range(0.7f, 1f), Random.Range(0f, 0.5f), 0));
                 Physics.Raycast(ray, out RaycastHit hitInfo, 500, 128);
                 enemy = enemiesPool.Get();
                 enemy.transform.position = hitInfo.point;

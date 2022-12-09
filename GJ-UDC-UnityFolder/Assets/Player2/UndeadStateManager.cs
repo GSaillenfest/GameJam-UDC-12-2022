@@ -6,7 +6,8 @@ using UnityEngine;
 public enum Undead_State
 {
     UndeadUp,
-    UndeadDown
+    UndeadDown,
+    UndeadHurt
 }
 
 public class UndeadStateManager : MonoBehaviour
@@ -16,6 +17,9 @@ public class UndeadStateManager : MonoBehaviour
     List<UndeadState> states = new();
     public UndeadState State => currentState;
 
+    [SerializeField]
+    Animator animator;
+
     public UndeadState GetCurrentState()
     {
         return currentState;
@@ -24,6 +28,7 @@ public class UndeadStateManager : MonoBehaviour
     private void Awake()
     {
         currentState = FindState(Undead_State.UndeadUp);
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update

@@ -14,9 +14,9 @@ TagManager:
   - UI
   - RangeDetection
   - Ground
-  - 
-  - 
-  - 
+  - Hitbox
+  - Hurtbox
+  - Pushbox
   - 
   - 
   - 

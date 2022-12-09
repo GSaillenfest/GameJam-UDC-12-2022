@@ -6,32 +6,25 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 
-public class UndeadPlayerAttacks : MonoBehaviour
+public class UndeadPlayerAttacks : MonoBehaviour, IHitboxResponder
 {
+    [SerializeField]
+    HitBoxBehaviour hitbox;
     PlayerControls playerControls;
     bool attack;
-    int hitPoint = 1;
+    int damage = 1;
     Animator animator;
 
     private void Awake()
     {
-        playerControls = GetComponent<PlayerTwoMovements>().playerControls; ;
         animator = GetComponent<Animator>();
+        playerControls = GetComponent<PlayerTwoMovements>().playerControls;
     }
 
-    private void OnEnable()
-    {
-        playerControls.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Player.Disable();
-    }
 
     private void Update()
     {
-        attack = playerControls.Player.Attack.WasPressedThisFrame();
+        attack = GetComponent<PlayerTwoMovements>().playerControls.Player1.Attack.WasPressedThisFrame();
         if (attack)
             Attack();
     }
@@ -39,18 +32,49 @@ public class UndeadPlayerAttacks : MonoBehaviour
     private void Attack()
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
             animator.SetTrigger("Attack");
+            hitbox.useResponder(this);
+        }
     }
 
-    void FixedUpdate()
+    public void StartAttack()
     {
+        hitbox.EnableCheckCollision();
+    }
 
+    public void StopAttack()
+    {
+        hitbox.DisableCheckCollision();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("hit enemy");
         if (other.gameObject.CompareTag("Enemy"))
-            other.transform.parent.GetComponent<EnemyHealth>().TakeDamage(hitPoint);
+        {
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    if (collision.collider.name == "BumpBox")
+        //    {
+        //        GetComponent<UndeadStateManager>().SwitchState(Undead_State.UndeadHurt);
+        //        animator.SetTrigger("IsHit");
+        //    }
+        //    else if (collision.collider.name == "HitBox")
+        //    {
+        //        collision.transform.GetComponent<EnemyHealth>().TakeDamage(hitPoint);
+        //    }
+        //}
+    }
+
+    public void CollisionedWith(Collider collider)
+    {
+        Hurtbox hurtbox = collider.GetComponent<Hurtbox>();
+        hurtbox?.TakeDamage(damage);
+        Debug.Log("hit enemy");
     }
 }

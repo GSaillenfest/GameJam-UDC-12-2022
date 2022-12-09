@@ -9,15 +9,21 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     int hp = 3;
     Animator animator;
+    SoulCounter undeadPlayer;
 
     private IObjectPool<GameObject> enemyPool;
 
-    public void TakeDamage(int hitPoint)
+    private void OnEnable()
     {
-        Debug.Log($"Hit by {hitPoint}");
-        if (hp - hitPoint > 0)
+        hp = 3;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log($"Hit by {damage}");
+        if (hp - damage > 0)
         {
-            hp -= hitPoint;
+            hp -= damage;
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Hurt"))
                 animator.SetTrigger("IsHit");
         }
@@ -28,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         enemyPool.Release(gameObject);
+        undeadPlayer.AddToSoulCount();
     }
 
     public void SetPool(IObjectPool<GameObject> pool)
@@ -38,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        undeadPlayer = FindObjectOfType<SoulCounter>();
     }
 
     // Update is called once per frame
