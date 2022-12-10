@@ -21,7 +21,7 @@ public class EnemiesSpawner : MonoBehaviour
     GameObject CreateEnemy()
     {
         GameObject enemy = Instantiate(enemyType[0]);
-        enemy.GetComponent<EnemyHealth>().SetPool(enemiesPool);
+        enemy.GetComponent<Health_Enemy>().SetPool(enemiesPool);
         return enemy;
     }
 

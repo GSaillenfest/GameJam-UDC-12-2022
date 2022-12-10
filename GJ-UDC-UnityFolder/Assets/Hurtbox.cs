@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hurtbox : MonoBehaviour
 {
     [SerializeField]
-    EnemyHealth health;
+    Health health;
 
     public void TakeDamage(int damage)
     {

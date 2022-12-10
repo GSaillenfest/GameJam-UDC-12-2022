@@ -6,10 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 
-public class UndeadPlayerAttacks : MonoBehaviour, IHitboxResponder
+public class Attack_UndeadPlayer : MonoBehaviour, IHitboxResponder
 {
     [SerializeField]
-    HitBoxBehaviour hitbox;
+    HitBox hitbox;
     PlayerControls playerControls;
     bool attack;
     int damage = 1;
@@ -46,13 +46,6 @@ public class UndeadPlayerAttacks : MonoBehaviour, IHitboxResponder
     public void StopAttack()
     {
         hitbox.DisableCheckCollision();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-        }
     }
 
     private void OnCollisionEnter(Collision collision)

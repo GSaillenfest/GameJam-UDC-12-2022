@@ -3,9 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
     [RequireComponent(typeof(Rigidbody))]
-public class PlayerTwoMovements : MonoBehaviour
+public class PlayerTwoMovements : Mover
 {
-    Rigidbody rgbd;
     public PlayerControls playerControls;
     Vector2 move;
     Vector3 movement;
@@ -13,9 +12,9 @@ public class PlayerTwoMovements : MonoBehaviour
 
     private void Awake()
     {
+        base.Init();
         animator = GetComponent<Animator>();
         playerControls = new();
-        rgbd = GetComponent<Rigidbody>();
         FindObjectOfType<Necrom_Range>().onOutOfRange += ChangeState;
     }
 
@@ -49,7 +48,7 @@ public class PlayerTwoMovements : MonoBehaviour
         rgbd.velocity = movement;
     }
 
-    private void LookRotation()
+    public override void LookRotation()
     {
         Quaternion rot;
         if (movement.magnitude > 0.2f)

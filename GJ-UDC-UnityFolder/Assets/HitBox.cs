@@ -16,7 +16,7 @@ public interface IHitboxResponder
 }
 
 
-public class HitBoxBehaviour : MonoBehaviour
+public class HitBox : MonoBehaviour
 {
     [SerializeField]
     Vector3 position;
@@ -26,6 +26,8 @@ public class HitBoxBehaviour : MonoBehaviour
     Quaternion rotation;
     [SerializeField]
     LayerMask mask;
+    [SerializeField]
+    ParticleSystem vfx;
 
     Color[] color = new Color[3] { Color.yellow, Color.green, Color.red };
     ColliderState _state = ColliderState.Closed;
@@ -49,7 +51,8 @@ public class HitBoxBehaviour : MonoBehaviour
             _state = ColliderState.OnCollision;
             Collider collider = colliders[0];
             _responder?.CollisionedWith(collider);
-            Debug.Log("We hit something");
+            if (vfx != null)
+                vfx.Play();
         }
         else _state = ColliderState.Open;
 
@@ -73,7 +76,7 @@ public class HitBoxBehaviour : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         CheckForGizmoColor();
         Gizmos.matrix = transform.localToWorldMatrix;

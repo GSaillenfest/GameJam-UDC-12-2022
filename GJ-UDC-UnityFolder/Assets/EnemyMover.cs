@@ -4,18 +4,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class EnemyMover : MonoBehaviour
+public class EnemyMover : Mover
 {
-    [SerializeField]
-    float speed = 1f;
     Transform necromPlayer;
-    Rigidbody rgbd;
     Vector3 direction;
 
     private void OnEnable()
     {
+        base.Init();
         necromPlayer = FindObjectOfType<Necrom_Range>().transform;
-        rgbd = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

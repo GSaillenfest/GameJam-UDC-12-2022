@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3252436014880878209}
   - component: {fileID: 2635213674723501933}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Hitbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746719428014806362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
-  boxSize: {x: 0.1, y: 0.1, z: 0.1}
+  boxSize: {x: 0.53, y: 0.61, z: 0.65}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   mask:
     serializedVersion: 2
     m_Bits: 512
+  vfx: {fileID: 0}
 --- !u!1 &1704489550936734704
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +62,9 @@ GameObject:
   - component: {fileID: 1708716751109892850}
   - component: {fileID: 1947239245}
   - component: {fileID: 8096277797007502294}
-  - component: {fileID: 6496474003620232344}
   - component: {fileID: 5389009517477467787}
+  - component: {fileID: 4337231772562348058}
+  - component: {fileID: 3979561934500526666}
   m_Layer: 0
   m_Name: EnemyType1
   m_TagString: Enemy
@@ -116,19 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
---- !u!114 &6496474003620232344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704489550936734704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02944692cdb3cde48a55c404391bfb6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 3
 --- !u!95 &5389009517477467787
 Animator:
   serializedVersion: 4
@@ -149,6 +138,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4337231772562348058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704489550936734704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdf8d53193041944b6a93fad5420add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 3
+  animator: {fileID: 5389009517477467787}
+--- !u!114 &3979561934500526666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704489550936734704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4f0af5061fe864bb6eadcf106fa00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5389009517477467787}
+  damage: 1
+  hitbox: {fileID: 2635213674723501933}
 --- !u!1 &1984522462502002006
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +295,7 @@ GameObject:
   - component: {fileID: 20461458918781181}
   - component: {fileID: 3328190596777534361}
   - component: {fileID: 7110640303393975305}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hurtbox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -325,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e265b9d661f449b46a390e33818ae438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 6496474003620232344}
+  health: {fileID: 4337231772562348058}
 --- !u!1 &5358577126820210629
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,11 +14,11 @@ TagManager:
   - UI
   - RangeDetection
   - Ground
-  - Hitbox
-  - Hurtbox
+  - Hitbox_Player
+  - Hurtbox_Player
   - Pushbox
-  - 
-  - 
+  - Hitbox_Enemy
+  - Hurtbox_Enemy
   - 
   - 
   - 

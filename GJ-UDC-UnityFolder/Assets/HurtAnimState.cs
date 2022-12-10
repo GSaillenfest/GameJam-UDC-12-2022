@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class HurtAnimState : StateMachineBehaviour
 {
+    float _speed;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<PlayerTwoMovements>().DisableControls();
+        _speed = animator.gameObject.GetComponent<Mover>().speed;
+        animator.gameObject.GetComponent<Mover>().speed = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -19,7 +22,7 @@ public class HurtAnimState : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<PlayerTwoMovements>().EnableControls();
+        animator.gameObject.GetComponent<Mover>().speed = _speed;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
