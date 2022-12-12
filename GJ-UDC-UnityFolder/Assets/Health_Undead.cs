@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Health_Undead : Health
 {
-    public override void Die()
+    protected override void Die()
     {
         GetComponent<UndeadStateManager>().SwitchState(Undead_State.UndeadDown);
-        GetComponent<PlayerTwoMovements>().DisableControls();
+        GetComponent<Mover_Player_Undead>().DisableControls();
     }
 
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
-        GetComponent<PlayerTwoMovements>().EnableControls();
+        GetComponent<Mover_Player_Undead>().EnableControls();
     }
 
 

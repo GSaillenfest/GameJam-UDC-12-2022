@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class EnemyMover : Mover
+public class Mover_Enemy : Mover
 {
     Transform necromPlayer;
     Vector3 direction;
@@ -27,7 +27,7 @@ public class EnemyMover : Mover
         rgbd.velocity = speed * direction.normalized;
     }
 
-    private void LookRotation()
+    protected override void LookRotation()
     {
         Quaternion rot;
         if ((direction).magnitude > 0.2f)

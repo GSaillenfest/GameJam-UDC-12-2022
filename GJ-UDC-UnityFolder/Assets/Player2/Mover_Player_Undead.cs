@@ -3,17 +3,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
     [RequireComponent(typeof(Rigidbody))]
-public class PlayerTwoMovements : Mover
+public class Mover_Player_Undead : Mover
 {
     public PlayerControls playerControls;
     Vector2 move;
     Vector3 movement;
-    Animator animator;
+    //Animator animator;
 
     private void Awake()
     {
         base.Init();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         playerControls = new();
         FindObjectOfType<Necrom_Range>().onOutOfRange += ChangeState;
     }
@@ -48,7 +48,7 @@ public class PlayerTwoMovements : Mover
         rgbd.velocity = movement;
     }
 
-    public override void LookRotation()
+    protected override void LookRotation()
     {
         Quaternion rot;
         if (movement.magnitude > 0.2f)

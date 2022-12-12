@@ -10,7 +10,7 @@ public class Health_Enemy : Health
 
     private IObjectPool<GameObject> enemyPool;
 
-    public override void Die()
+    protected override void Die()
     {
         enemyPool.Release(gameObject);
         undeadPlayer.AddToSoulCount();

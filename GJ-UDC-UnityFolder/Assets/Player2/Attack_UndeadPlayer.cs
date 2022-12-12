@@ -18,13 +18,13 @@ public class Attack_UndeadPlayer : MonoBehaviour, IHitboxResponder
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        playerControls = GetComponent<PlayerTwoMovements>().playerControls;
+        playerControls = GetComponent<Mover_Player_Undead>().playerControls;
     }
 
 
     private void Update()
     {
-        attack = GetComponent<PlayerTwoMovements>().playerControls.Player1.Attack.WasPressedThisFrame();
+        attack = GetComponent<Mover_Player_Undead>().playerControls.Player1.Attack.WasPressedThisFrame();
         if (attack)
             Attack();
     }

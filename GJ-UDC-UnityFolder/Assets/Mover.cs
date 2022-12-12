@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 
-public class Mover : MonoBehaviour
+public abstract class Mover : MonoBehaviour
 {
     [SerializeField]
     public float speed;
@@ -20,7 +20,7 @@ public class Mover : MonoBehaviour
         rgbd = GetComponent<Rigidbody>();
     }
 
-    public virtual void LookRotation()
+    protected virtual void LookRotation()
     {
         
     }

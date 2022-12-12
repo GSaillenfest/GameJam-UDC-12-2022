@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Health : MonoBehaviour
+public abstract class Health : MonoBehaviour
 {
     [SerializeField]
     int maxHP;
@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 
     int hp;
 
-    public virtual void Init()
+    protected virtual void Init()
     {
         hp = maxHP;
     }
@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
             Die();
     }
 
-    public virtual void Die()
+    protected virtual void Die()
     {
     
     }
